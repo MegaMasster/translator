@@ -1,6 +1,7 @@
 const sendBtn = document.querySelector(".translate-box__active-Btn")
 const resultInput = document.querySelector(".input_en")
 const enterInput = document.querySelector(".input_ru")
+const manySymError = document.querySelector(".manySymError")
 
 
 async function translate(sentWord) {
@@ -22,10 +23,16 @@ async function translate(sentWord) {
         console.log(data)
 
         const translatedText = data.responseData.translatedText
-        if(data.responseStatus == "403"){
+        if(data.responseDetails == "QUERY LENGTH LIMIT EXCEEDED. MAX ALLOWED QUERY : 500 CHARS"){
+            resultInput.value = ""
+            enterInput.value = ""
+            manySymError.innerHTML = "QUERY LENGTH LIMIT EXCEEDED. MAX ALLOWED QUERY : 500 CHARS"
+        }else if(data.responseStatus == "403"){
             enterInput.focus()
+            manySymError.innerHTML = ""
         }else{
             resultInput.innerHTML = translatedText 
+            manySymError.innerHTML = ""
         }
 
     }catch(error){

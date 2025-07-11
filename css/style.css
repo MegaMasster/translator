@@ -62,6 +62,7 @@ body{
 }
 .translate-box__active{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -81,4 +82,7 @@ body{
 }
 .translate-box__active-Btn:active{
     transform: scale(0.75);
+}
+.manySymError{
+    color: tomato;
 }
